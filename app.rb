@@ -2,6 +2,7 @@ require 'sinatra'
 require 'slim'
 require 'sass'
 require 'dalli'
+require 'memcachier'
 
 require 'sinatra/param'
 require 'sinatra/partial'
