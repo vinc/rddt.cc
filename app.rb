@@ -8,32 +8,30 @@ require 'sinatra/partial'
 
 require './reddit'
 
-cache = Dalli::Client.new
-ttl = 60 * 30
-
-default_editions = [
-    {
-        title: 'News',
-        subreddits: ['worldnews', 'europe']
-    }, {
-        title: 'Science',
-        subreddits: ['science', 'askscience']
-    }, {
-        title: 'Tech',
-        subreddits: ['programming', 'linux', 'unix', 'netsec', 'privacy']
-    }
-]
-
 configure do
     enable :sessions
     set :slim, :pretty => true
     set :partial_template_engine, :slim
     #set :show_exceptions, false
+
+    set :cache, Dalli::Client.new
+    set :ttl, 60 * 30
 end
 
 before do
-    expires ttl, :public, :must_revalidate
-    session[:editions] ||= default_editions
+    expires settings.ttl, :public, :must_revalidate
+    session[:editions] ||= [
+        {
+            title: 'News',
+            subreddits: ['worldnews', 'europe']
+        }, {
+            title: 'Science',
+            subreddits: ['science', 'askscience']
+        }, {
+            title: 'Tech',
+            subreddits: ['programming', 'linux', 'unix', 'netsec', 'privacy']
+        }
+    ]
 end
 
 get '/' do
@@ -49,11 +47,11 @@ get '/r/:subreddits/?:sort?' do
         in: (1..100), default: 20
 
     key_entries = "subreddits:#{request.path}"
-    entries = cache.get(key_entries)
+    entries = settings.cache.get(key_entries)
     if entries.nil?
         key_wait = "wait"
         time_wait = 20
-        wait = cache.get(key_wait)
+        wait = settings.cache.get(key_wait)
         unless wait.nil?
             remaining = '%.6f' % (time_wait + wait - Time.now.to_f)
             halt(500, slim(:ratelimited, locals: {wait: remaining}))
@@ -62,8 +60,11 @@ get '/r/:subreddits/?:sort?' do
         subreddits = params[:subreddits].split '+'
         entries = Reddit.new(subreddits).entries(params)
 
-        cache.set(key_entries, entries, ttl)
-        cache.set(key_wait, Time.now.to_f, time_wait) # Wait 30 seconds between query
+        # Cache query
+        settings.cache.set(key_entries, entries, settings.ttl)
+
+        # Wait 'time_wait' seconds before next query
+        settings.cache.set(key_wait, Time.now.to_f, time_wait)
     end
     slim :subreddits, locals: {entries: entries}
 end
