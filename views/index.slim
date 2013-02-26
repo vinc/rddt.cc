@@ -11,10 +11,10 @@ html
             - for edition in editions do
                 article
                     h1
-                        a href="/r/#{edition[:subreddits].join('+')}/top"
-                            = edition[:title]
+                        a href="/r/#{edition['subreddits'].join('+')}/top"
+                            = edition['title']
                     ul
-                        - for subreddit in edition[:subreddits] do
+                        - for subreddit in edition['subreddits'] do
                             li
                                 a href="/r/#{subreddit}/top"
                                     = subreddit

@@ -1,0 +1,18 @@
+---
+- title: News
+  subreddits:
+      - worldnews
+      - europe
+
+- title: Science
+  subreddits:
+      - science
+      - askscience
+
+- title: Tech
+  subreddits:
+      - programming
+      - linux
+      - unix
+      - netsec
+      - privacy

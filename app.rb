@@ -1,9 +1,10 @@
-require 'sinatra'
-require 'slim'
-require 'sass'
+require 'yaml'
+
 require 'dalli'
 require 'memcachier'
-
+require 'sass'
+require 'slim'
+require 'sinatra'
 require 'sinatra/param'
 require 'sinatra/partial'
 
@@ -17,22 +18,12 @@ configure do
 
     set :cache, Dalli::Client.new
     set :ttl, 60 * 30
+    set :editions, YAML.load_file('editions.yaml')
 end
 
 before do
     expires settings.ttl, :public, :must_revalidate
-    session[:editions] ||= [
-        {
-            title: 'News',
-            subreddits: ['worldnews', 'europe']
-        }, {
-            title: 'Science',
-            subreddits: ['science', 'askscience']
-        }, {
-            title: 'Tech',
-            subreddits: ['programming', 'linux', 'unix', 'netsec', 'privacy']
-        }
-    ]
+    session[:editions] ||= settings.editions
 end
 
 get '/' do
