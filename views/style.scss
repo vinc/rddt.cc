@@ -1,0 +1,247 @@
+@import url(http://fonts.googleapis.com/css?family=Cantata+One|Open+Sans);
+@import url(http://necolas.github.com/normalize.css/2.0.1/normalize.css);
+@import url(/styles/icons.css);
+
+$col-width: 4em;
+
+body {
+    background-color: floralwhite;
+    background-image: url(/images/bg.png);
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    padding: 1em;
+    margin: 0 auto;
+    max-width: 56em;
+
+    > header {
+        margin-bottom: 2em;
+
+        .title {
+            font-size: 2.5em;
+            font-family: 'Cantata One', serif;
+            margin: 0;
+        }
+        .subtitle {
+            margin: 0.3em 0 0;
+        }
+    }
+
+    > footer {
+        padding-top: 1em;
+
+        p,
+        p a {
+            text-align: center;
+            color: #bbb;
+        }
+    }
+}
+
+h1 {
+    font-family: 'Cantata One', serif;
+    font-weight: normal;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+section.news {
+    article {
+        padding: 0.3em 0;
+        display: -webkit-box;
+        //display:    -moz-box;
+        display:     -ms-box;
+        display:      -o-box;
+        display:         box;
+        display: -webkit-flex;
+        //display:    -moz-flex;
+        display:         flex;
+        -webkit-box-orient: horizontal;
+           -moz-box-orient: horizontal;
+            -ms-box-orient: horizontal;
+             -o-box-orient: horizontal;
+                box-orient: horizontal;
+        width: 100%;
+        //overflow: hidden; /* fix for firefox */
+        clear: both; /* for firefox */
+
+        &:hover {
+            background: rgba(#333, 0.2);
+
+            a:visited {
+              color: #666;
+            }
+        }
+
+        a {
+            &:hover {
+                text-decoration: underline;
+            }
+            &:visited {
+                color: #bbb;
+            }
+        }
+
+        header {
+            display: -webkit-box;
+            //display:    -moz-box;
+            display:     -ms-box;
+            display:      -o-box;
+            display:         box;
+            display: -webkit-flex;
+            //display:    -moz-flex;
+            display:         flex;
+            -webkit-box-orient: horizontal;
+            //-moz-box-orient: horizontal;
+            -ms-box-orient: horizontal;
+            -o-box-orient: horizontal;
+            box-orient: horizontal;
+            //width: 2 * $col-width;
+            float: left; /* for firefox */
+
+            > p {
+                float: left; /* for firefox */
+                width: $col-width;
+                margin: 0;
+                text-align: right;
+            }
+        }
+
+        h1 {
+            -webkit-box-flex: 1;
+            //-moz-box-flex: 1;
+            -ms-box-flex: 1;
+            -o-box-flex: 1;
+            box-flex: 1;
+            -webkit-flex: 1;
+            //-moz-flex: 1;
+            flex: 1;
+            min-width: 0; /* fix for flex */
+
+            margin: 0;
+            padding-left: 2em;
+            font-size: 1em;
+            font-weight: normal;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            font-family: 'Open Sans', sans-serif;
+
+            &:hover {
+                //white-space: normal;
+            }
+        }
+    }
+    header {
+        color: #bbb;
+        display: -webkit-box;
+        //display: -moz-box;
+        display: -ms-box;
+        display: -o-box;
+        display: box;
+        display: -webkit-flex;
+        //display: -moz-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        //-moz-box-orient: horizontal;
+        -ms-box-orient: horizontal;
+        -o-box-orient: horizontal;
+        box-orient: horizontal;
+        float: left; /* for firefox */
+
+        p {
+            text-align: right;
+            margin: 0;
+            width: $col-width;
+            float: left; /* for firefox */
+
+            &:nth-child(3) {
+                text-align: left;
+                padding-left: 2em;
+                -webkit-box-flex: 1;
+                //-moz-box-flex: 1;
+                -ms-box-flex: 1;
+                -o-box-flex: 1;
+                box-flex: 1;
+                -webkit-flex: 1;
+                //-moz-flex: 1;
+                flex: 1;
+                min-width: 0; /* fix for flex */
+            }
+        }
+    }
+}
+
+section.editions {
+    article {
+        margin: 1.5em 0;
+
+        h1 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+        ul {
+            color: #bbb;
+            padding-left: 3em;
+            margin: 0.5em 0;
+        }
+    }
+}
+
+section.error {
+    text-align: center;
+    h1 {
+        font-size: 1.5em;
+    }
+    a {
+        text-decoration: underline;
+    }
+    img {
+        background: floralwhite;
+        max-width: 90%;
+        border-radius: 4px;
+        -webkit-box-shadow: 1px 1px 6px #333;
+        //-moz-box-shadow: 1px 1px 6px #333;
+        -ms-box-shadow: 1px 1px 6px #333;
+        -o-box-shadow: 1px 1px 6px #333;
+        box-shadow: 1px 1px 6px #333;
+
+        -webkit-animation-duration: 10s;
+        -webkit-animation-name: color;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-duration: 10s;
+        -moz-animation-name: color;
+        -moz-animation-iteration-count: infinite;
+    }
+}
+@-webkit-keyframes color {
+    from, to {
+        background: floralwhite;
+    }
+    50% {
+        background: orange;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body > header .title {
+        text-align: center;
+    }
+    body > header .subtitle,
+    section.news > header p:nth-child(2),
+    section.news > article p:nth-child(2) {
+        display: none;
+    }
+    section.news > header p:nth-child(1),
+    section.news > article p:nth-child(1) {
+        width: $col-width / 2;
+    }
+    section.news > article h1 {
+        padding-left: 1.5em;
+    }
+}

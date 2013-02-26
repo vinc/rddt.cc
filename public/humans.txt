@@ -1,0 +1,11 @@
+/* TEAM */
+Creator: Vincent Ollivier
+Website: http://vinc.cc
+Twitter: @vinc686
+Github: @vinc
+From: Paris, France
+
+/* THANKS */
+Icons: http://fortawesome.github.com/Font-Awesome
+CSS Reset: http://necolas.github.com/normalize.css
+Illustration: http://www.gutenberg.org/files/30492/30492-h/30492-h.htm

@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        title = "Reddit Digest #{request.path}"
+        link href="/style.css" rel="stylesheet" type="text/css"
+        meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    body
+        == partial :header
+
+        section.news
+            header
+                p
+                    i.icon-up
+                p
+                    i.icon-comment
+                p
+                    = request.path
+
+            - for entry in entries do
+                article
+                    header
+                        p
+                            a href=entry.permalink
+                                = entry.votes
+                        p
+                            a href=entry.permalink
+                                = entry.comments
+                    h1
+                        a href=entry.url
+                            = entry.title
+
+        == partial :footer

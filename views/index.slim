@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        title Reddit Digest
+        link href="/style.css" rel="stylesheet" type="text/css"
+        meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    body
+        == partial :header
+
+        section.editions
+            - for edition in editions do
+                article
+                    h1
+                        a href="/r/#{edition[:subreddits].join('+')}/top"
+                            = edition[:title]
+                    ul
+                        - for subreddit in edition[:subreddits] do
+                            li
+                                a href="/r/#{subreddit}/top"
+                                    = subreddit
+        == partial :footer
