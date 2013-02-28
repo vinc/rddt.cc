@@ -42,7 +42,7 @@ get '/r/:subreddits/?:sort?' do
     entries = settings.cache.get(key_entries)
     if entries.nil?
         key_wait = "wait"
-        time_wait = 20
+        time_wait = 2
         wait = settings.cache.get(key_wait)
         unless wait.nil?
             remaining = '%.6f' % (time_wait + wait - Time.now.to_f)
