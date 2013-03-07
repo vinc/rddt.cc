@@ -47,7 +47,7 @@ a {
     color: #333;
     text-decoration: none;
     &:hover {
-        text-decoration: underline;
+        //text-decoration: underline;
     }
 }
 
@@ -86,12 +86,12 @@ section.news {
         padding: 0.5em 0;
         width: 100%;
 
-        $delay: 0.5s;
-        -webkit-transition: $delay;
-        -moz-transition: $delay;
-        -ms-transition: $delay;
-        -o-transition: $delay;
-        transition: $delay;
+        $delay: 300ms;
+        -webkit-transition: background $delay ease-in;
+        -moz-transition: background $delay ease-in;
+        -ms-transition: background $delay ease-in;
+        -o-transition: background $delay ease-in;
+        transition: background $delay ease-in;
 
         &:hover {
             background: rgba(#333, 0.2);
@@ -103,7 +103,7 @@ section.news {
 
         a {
             &:hover {
-                text-decoration: underline;
+                //text-decoration: underline;
             }
             &:visited {
                 color: #bbb;
@@ -160,7 +160,7 @@ section.error {
         font-size: 1.5em;
     }
     a {
-        text-decoration: underline;
+        //text-decoration: underline;
     }
     img {
         background: floralwhite;
