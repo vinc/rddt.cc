@@ -2,10 +2,11 @@
 @import url(http://necolas.github.com/normalize.css/2.0.1/normalize.css);
 @import url(/styles/icons.css);
 
-$col-width: 4em;
+$col-width: 3em;
+$bg-color: whitesmoke;
 
 body {
-    background-color: floralwhite;
+    background-color: $bg-color;
     background-image: url(/images/bg.png);
     color: #333;
     font-family: 'Open Sans', sans-serif;
@@ -51,11 +52,45 @@ a {
 }
 
 section.news {
-    article {
-        padding: 0.3em 0;
+    > header {
+        color: #bbb;
+        float: left; /* for firefox */
+        margin: 0.5em 0;
+        padding: 0.5em 0;
         width: 100%;
-        //overflow: hidden; /* fix for firefox */
+
+        p {
+            margin: 0;
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                text-align: right;
+                width: $col-width;
+                float: left; /* for firefox */
+            }
+            &:nth-child(3) {
+                text-align: left;
+                padding-left: 2em;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
+    }
+
+    article {
+        background: rgba(white, 0.4);
         clear: both; /* for firefox */
+        margin: 0.5em 0;
+        padding: 0.5em 0;
+        width: 100%;
+
+        $delay: 0.5s;
+        -webkit-transition: $delay;
+        -moz-transition: $delay;
+        -ms-transition: $delay;
+        -o-transition: $delay;
+        transition: $delay;
 
         &:hover {
             background: rgba(#333, 0.2);
@@ -97,29 +132,6 @@ section.news {
 
             &:hover {
                 //white-space: normal;
-            }
-        }
-    }
-    > header {
-        color: #bbb;
-        float: left; /* for firefox */
-        width: 100%;
-
-        p {
-            margin: 0;
-
-            &:nth-child(1),
-            &:nth-child(2) {
-                text-align: right;
-                width: $col-width;
-                float: left; /* for firefox */
-            }
-            &:nth-child(3) {
-                text-align: left;
-                padding-left: 2em;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
             }
         }
     }
@@ -177,8 +189,14 @@ section.error {
 }
 
 @media screen and (max-width: 480px) {
-    body > header .title {
-        text-align: center;
+    body {
+        padding: 0.3em;
+        > header {
+            margin-bottom: 1em;
+            .title {
+                text-align: center;
+            }
+        }
     }
     body > header .subtitle,
     section.news > header p:nth-child(2),
@@ -187,9 +205,10 @@ section.error {
     }
     section.news > header p:nth-child(1),
     section.news > article p:nth-child(1) {
-        width: $col-width / 2;
+        width: $col-width - 1;
     }
+    section.news > header p:nth-child(3),
     section.news > article h1 {
-        padding-left: 1.5em;
+        padding-left: 1em;
     }
 }
