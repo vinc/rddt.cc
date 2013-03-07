@@ -14,7 +14,8 @@ html
                 p
                     i.icon-comment
                 p
-                    = request.path
+                    a href="http://www.reddit.com#{request.path}"
+                        = request.path
 
             - for entry in entries do
                 article
