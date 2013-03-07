@@ -100,19 +100,26 @@ section.news {
             }
         }
     }
-    header {
+    > header {
         color: #bbb;
         float: left; /* for firefox */
+        width: 100%;
 
         p {
-            text-align: right;
             margin: 0;
-            width: $col-width;
-            float: left; /* for firefox */
 
+            &:nth-child(1),
+            &:nth-child(2) {
+                text-align: right;
+                width: $col-width;
+                float: left; /* for firefox */
+            }
             &:nth-child(3) {
                 text-align: left;
                 padding-left: 2em;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
             }
         }
     }
