@@ -28,6 +28,7 @@ body {
     }
 
     > footer {
+        clear: both;
         padding-top: 1em;
 
         p,
@@ -49,6 +50,18 @@ a {
     &:hover {
         //text-decoration: underline;
     }
+}
+
+article {
+    background: rgba(white, 0.3);
+    border-radius: 3px;
+
+    $delay: 300ms;
+    -webkit-transition: background $delay ease-in;
+       -moz-transition: background $delay ease-in;
+        -ms-transition: background $delay ease-in;
+         -o-transition: background $delay ease-in;
+            transition: background $delay ease-in;
 }
 
 section.news {
@@ -83,19 +96,10 @@ section.news {
     }
 
     article {
-        background: rgba(white, 0.3);
-        border-radius: 3px;
         clear: both; /* for firefox */
         margin: 0.5em 0;
         padding: 0.5em 0;
         width: 100%;
-
-        $delay: 300ms;
-        -webkit-transition: background $delay ease-in;
-        -moz-transition: background $delay ease-in;
-        -ms-transition: background $delay ease-in;
-        -o-transition: background $delay ease-in;
-        transition: background $delay ease-in;
 
         &:hover {
             background: rgba(#333, 0.2);
@@ -144,7 +148,14 @@ section.news {
 
 section.editions {
     article {
-        margin: 1.5em 0;
+        margin: 0.5em;
+        padding: 1em;
+        display: inline-block;
+        vertical-align: top;
+
+        &:hover {
+            background: rgba(#333, 0.2);
+        }
 
         h1 {
             font-size: 1.5em;
@@ -152,8 +163,8 @@ section.editions {
         }
         ul {
             color: #bbb;
-            padding-left: 3em;
-            margin: 0.5em 0;
+            padding-left: 1.5em;
+            margin: 0.5em 0 0;
         }
     }
 }
@@ -167,7 +178,7 @@ section.error {
         //text-decoration: underline;
     }
     img {
-        background: floralwhite;
+        background: $bg-color;
         max-width: 90%;
         border-radius: 4px;
         -webkit-box-shadow: 1px 1px 6px #333;
@@ -215,5 +226,10 @@ section.error {
     section.news > header p:nth-child(3),
     section.news > article h1 {
         padding-left: 1em;
+    }
+    section.editions {
+        article {
+            display: block;
+        }
     }
 }
