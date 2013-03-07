@@ -1,3 +1,4 @@
+require 'cgi'
 require 'date'
 require 'json'
 require 'rest_client'
@@ -8,7 +9,7 @@ class Entry
     attr_accessor :title, :url, :permalink, :comments, :date, :votes
     def initialize(hash)
         @date = DateTime.strptime(hash['created_utc'].to_s, '%s')
-        @title = hash['title']
+        @title = CGI.unescapeHTML(hash['title'])
         @votes = hash['score']
         @comments = hash['num_comments']
         @url = hash['url']
