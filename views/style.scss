@@ -53,19 +53,6 @@ a {
 section.news {
     article {
         padding: 0.3em 0;
-        display: -webkit-box;
-        //display:    -moz-box;
-        display:     -ms-box;
-        display:      -o-box;
-        display:         box;
-        display: -webkit-flex;
-        //display:    -moz-flex;
-        display:         flex;
-        -webkit-box-orient: horizontal;
-           -moz-box-orient: horizontal;
-            -ms-box-orient: horizontal;
-             -o-box-orient: horizontal;
-                box-orient: horizontal;
         width: 100%;
         //overflow: hidden; /* fix for firefox */
         clear: both; /* for firefox */
@@ -88,20 +75,6 @@ section.news {
         }
 
         header {
-            display: -webkit-box;
-            //display:    -moz-box;
-            display:     -ms-box;
-            display:      -o-box;
-            display:         box;
-            display: -webkit-flex;
-            //display:    -moz-flex;
-            display:         flex;
-            -webkit-box-orient: horizontal;
-            //-moz-box-orient: horizontal;
-            -ms-box-orient: horizontal;
-            -o-box-orient: horizontal;
-            box-orient: horizontal;
-            //width: 2 * $col-width;
             float: left; /* for firefox */
 
             > p {
@@ -113,16 +86,6 @@ section.news {
         }
 
         h1 {
-            -webkit-box-flex: 1;
-            //-moz-box-flex: 1;
-            -ms-box-flex: 1;
-            -o-box-flex: 1;
-            box-flex: 1;
-            -webkit-flex: 1;
-            //-moz-flex: 1;
-            flex: 1;
-            min-width: 0; /* fix for flex */
-
             margin: 0;
             padding-left: 2em;
             font-size: 1em;
@@ -139,19 +102,6 @@ section.news {
     }
     header {
         color: #bbb;
-        display: -webkit-box;
-        //display: -moz-box;
-        display: -ms-box;
-        display: -o-box;
-        display: box;
-        display: -webkit-flex;
-        //display: -moz-flex;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        //-moz-box-orient: horizontal;
-        -ms-box-orient: horizontal;
-        -o-box-orient: horizontal;
-        box-orient: horizontal;
         float: left; /* for firefox */
 
         p {
@@ -163,15 +113,6 @@ section.news {
             &:nth-child(3) {
                 text-align: left;
                 padding-left: 2em;
-                -webkit-box-flex: 1;
-                //-moz-box-flex: 1;
-                -ms-box-flex: 1;
-                -o-box-flex: 1;
-                box-flex: 1;
-                -webkit-flex: 1;
-                //-moz-flex: 1;
-                flex: 1;
-                min-width: 0; /* fix for flex */
             }
         }
     }
