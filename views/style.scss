@@ -107,6 +107,10 @@ section.news {
             a:visited {
               color: #666;
             }
+
+            a:hover {
+                color: rgba(white, 0.9);
+            }
         }
 
         a {
@@ -155,6 +159,10 @@ section.editions {
 
         &:hover {
             background: rgba(#333, 0.2);
+
+            a:hover {
+                color: rgba(white, 0.9);
+            }
         }
 
         h1 {
