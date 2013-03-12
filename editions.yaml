@@ -1,6 +1,7 @@
 ---
 - title: News
   subreddits:
+      - news
       - worldnews
       - worldevents
 
