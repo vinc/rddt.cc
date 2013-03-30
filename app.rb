@@ -7,6 +7,7 @@ require 'slim'
 require 'sinatra'
 require 'sinatra/param'
 require 'sinatra/partial'
+require 'sinatra/reloader' if development?
 
 require './reddit'
 
@@ -27,21 +28,24 @@ before do
 end
 
 get '/' do
-    slim :index, locals: { editions: session[:editions] }
+    slim :index, locals: {
+        period: 'weekly',
+        editions: session[:editions]
+    }
 end
 
 get '/r/:subreddits/?:sort?' do
     param :sort, String,
         in: ['hot', 'top', 'new', 'controversial'], default: 'hot'
     param :t, String,
-        in: ['hour', 'day', 'week', 'month', 'year', 'all'], default: 'day'
+        in: ['hour', 'day', 'week', 'month', 'year', 'all'], default: 'week'
     param :limit, Integer,
         in: (1..100), default: 20
 
     key_entries = "subreddits:#{request.fullpath}"
     entries = settings.cache.get(key_entries)
     if entries.nil?
-        key_wait = "wait"
+        key_wait = 'wait'
         time_wait = 2
         wait = settings.cache.get(key_wait)
         unless wait.nil?
@@ -58,7 +62,10 @@ get '/r/:subreddits/?:sort?' do
         # Wait 'time_wait' seconds before next query
         settings.cache.set(key_wait, Time.now.to_f, time_wait)
     end
-    slim :subreddits, locals: {entries: entries}
+    slim :subreddits, locals: {
+        period: params[:t].tr('y', 'i') + 'ly',
+        entries: entries
+    }
 end
 
 get '/select' do

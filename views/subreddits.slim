@@ -5,7 +5,7 @@ html
         link href="/style.css" rel="stylesheet" type="text/css"
         meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
     body
-        == partial :header
+        == partial :header, :locals => { period: period }
 
         section.news
             header
@@ -14,7 +14,7 @@ html
                 p
                     i.icon-comment
                 p
-                    a href="http://www.reddit.com#{request.path}"
+                    a href="http://www.reddit.com#{request.fullpath}"
                         = request.path
 
             - for entry in entries do
