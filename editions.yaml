@@ -1,41 +1,36 @@
 ---
-- title: News
-  subreddits:
-      - news
-      - worldnews
-      - worldevents
+News:
+    - news
+    - worldnews
+    - worldevents
 
-- title: Science
-  subreddits:
-      - science
-      - askscience
-      - space
-      - Physics
-      - cosmology
+Science:
+    - science
+    - askscience
+    - space
+    - Physics
+    - cosmology
 
-- title: Tech
-  subreddits:
-      - programming
-      - netsec
-      - privacy
-      - Futurology
-      - linux
-      - gnu
-      - BSD
-      - unix
+Tech:
+    - programming
+    - netsec
+    - privacy
+    - Futurology
+    - linux
+    - gnu
+    - BSD
+    - unix
 
-- title: Insightful
-  subreddits:
-      - Foodforthought
-      - TrueReddit
-      - DepthHub
-      - bestof
-      - dataisbeautiful
-      - mapporn
+Insightful:
+    - Foodforthought
+    - TrueReddit
+    - DepthHub
+    - bestof
+    - dataisbeautiful
+    - mapporn
 
-- title: Academic
-  subreddits:
-      - philosophy
-      - AcademicPhilosophy
-      - history
-      - AskHistorians
+Academic:
+    - philosophy
+    - AcademicPhilosophy
+    - history
+    - AskHistorians

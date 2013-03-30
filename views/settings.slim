@@ -1,0 +1,49 @@
+doctype html
+html
+    head
+        title = "Reddit Digest settings"
+        link href="/style.css" rel="stylesheet" type="text/css"
+        meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+        script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
+        script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+        script src="/scripts/form.js"
+    body
+        == partial :header, :locals => { period: period }
+
+        section.settings
+            form action="" method="post"
+                p
+                    label for="period" Periodicity: 
+                    select name="period"
+                        - for p in ['hourly', 'daily', 'weekly', 'monthly', 'yearly'] do
+                              - if p == period
+                                  option selected="selected" = p
+                              - else
+                                  option = p
+                p Editions:
+                datalist id="subreddits-list"
+                    - for subreddit in editions.values.flatten.uniq do
+                        option = subreddit
+                .editions
+                    - for edition, subreddits in editions do
+                        p.edition
+                            a data-action="remove" href="#"
+                                i.icon-cancel-circle
+                            input name="titles[]" type="text" placeholder="Name" value=edition
+                            span
+                                input name="subreddits[]" type="text" placeholder="Space separated list of subreddits" list="subreddits-list" multiple="multiple" value=subreddits.join(' ')
+                p.edition.empty
+                    a data-action="remove" href="#"
+                        i.icon-cancel-circle
+                    input name="titles[]" type="text" placeholder="Name" value=""
+                    span
+                        input name="subreddits[]" type="text" placeholder="Space separated list of subreddits" list="subreddits-list" multiple="multiple" value=""
+
+                p.add-edition
+                    a data-action="add" href="#"
+                        i.icon-plus-circle
+                        | Add another edition
+                p.save-settings
+                    input type="submit" value="Save settings"
+
+        == partial :footer

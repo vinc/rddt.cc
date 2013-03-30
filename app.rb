@@ -19,28 +19,31 @@ configure do
 
     set :cache, Dalli::Client.new
     set :ttl, 60 * 30
+
     set :editions, YAML.load_file('editions.yaml')
+    set :period, 'weekly'
 end
 
 before do
     expires settings.ttl, :public, :must_revalidate
     session[:editions] ||= settings.editions
+    session[:period] ||= settings.period
 end
 
 get '/' do
     slim :index, locals: {
-        period: 'weekly',
+        period: session[:period],
         editions: session[:editions]
     }
 end
 
 get '/r/:subreddits/?:sort?' do
-    param :sort, String,
-        in: ['hot', 'top', 'new', 'controversial'], default: 'hot'
-    param :t, String,
-        in: ['hour', 'day', 'week', 'month', 'year', 'all'], default: 'week'
-    param :limit, Integer,
-        in: (1..100), default: 20
+    param :sort, String, default: 'hot',
+        in: ['hot', 'top', 'new', 'controversial']
+    param :t, String, default: session[:period][0..-3].tr('i', 'y'),
+        in: ['hour', 'day', 'week', 'month', 'year', 'all']
+    param :limit, Integer, default: 20,
+        in: (1..100)
 
     key_entries = "subreddits:#{request.fullpath}"
     entries = settings.cache.get(key_entries)
@@ -63,12 +66,43 @@ get '/r/:subreddits/?:sort?' do
         settings.cache.set(key_wait, Time.now.to_f, time_wait)
     end
     slim :subreddits, locals: {
-        period: params[:t].tr('y', 'i') + 'ly',
+        period: session[:period],
         entries: entries
     }
 end
 
-get '/select' do
+get '/settings' do
+    slim :settings, locals: {
+        period: session[:period],
+        editions: session[:editions]
+    }
+end
+
+post '/settings' do
+    param :period, String, default: settings.period,
+        in: ['hourly', 'daily', 'weekly', 'monthly', 'yearly']
+
+    session[:period] = params[:period]
+
+    # The subreddits array is made of strings
+    # containing subreddits separated by space
+    subreddits = params[:subreddits].map {|x| x.split}
+
+    # Associate each title with an array of subreddits
+    editions = Hash[params[:titles].zip(subreddits)]
+
+    # The form inputs could be empty
+    editions.delete_if {|k, v| k.empty? || v.empty?}
+
+    session[:editions] = editions
+
+    slim :settings, locals: {
+        period: session[:period],
+        editions: session[:editions]
+    }
+end
+
+get '/select' do # FIXME: should be removed
     if params.empty?
         session.delete(:editions)
     else

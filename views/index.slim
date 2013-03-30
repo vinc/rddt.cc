@@ -8,13 +8,13 @@ html
         == partial :header, :locals => { period: period }
 
         section.editions
-            - for edition in editions do
+            - for edition, subreddits in editions do
                 article
                     h1
-                        a href="/r/#{edition['subreddits'].join('+')}/top?t=week"
-                            = edition['title']
+                        a href="/r/#{subreddits.join('+')}/top?t=week"
+                            = edition
                     ul
-                        - for subreddit in edition['subreddits'] do
+                        - for subreddit in subreddits do
                             li
                                 a href="/r/#{subreddit}/top?t=week"
                                     = subreddit

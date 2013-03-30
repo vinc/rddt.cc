@@ -17,6 +17,17 @@ body {
     > header {
         margin-bottom: 2em;
 
+        .menu {
+            float: right;
+
+            a {
+                color: #777;
+            }
+            a:hover {
+                color: #000;
+            }
+        }
+
         .title {
             font-size: 2.5em;
             font-family: 'Cantata One', serif;
@@ -177,6 +188,59 @@ section.editions {
     }
 }
 
+section.settings {
+    input, select {
+        padding: 3px;
+        color: #333;
+    }
+    .add-edition {
+        line-height: 2em; // Vertical align icons
+        margin-left: 2em; // Ident the line without scrollbar
+    }
+    .edition {
+        line-height: 2em; // Vertical align icons
+        overflow: hidden;
+        width: 100%;
+
+        input {
+            &[type="text"] {
+                border: solid 1px #ccc;
+                border-radius: 3px;
+                background: rgba(white, 0.8);
+            }
+
+            &[name="titles[]"] {
+                width: 8em;
+                float: left;
+                margin-left: 2em; // Ident the line without scrollbar
+            }
+            &[name="subreddits[]"] {
+                width: 100%;
+            }
+        }
+        span { // Allow its child to use the remaining space
+            display: block;
+            overflow: hidden;
+            padding: 0 1em;
+        }
+        a {
+            float: right;
+        }
+    }
+    .edition.empty {
+        display: none;
+    }
+    a {
+        color: #555;
+        &:hover {
+            color: #000;
+        }
+    }
+    p.save-settings {
+        text-align: center;
+    }
+}
+
 section.error {
     text-align: center;
     h1 {
@@ -238,6 +302,13 @@ section.error {
     section.editions {
         article {
             display: block;
+        }
+    }
+    section.settings {
+        .editions {
+            input[name="titles[]"] {
+                width: 6em;
+            }
         }
     }
 }
