@@ -6,6 +6,13 @@ Github: @vinc
 From: Paris, France
 
 /* THANKS */
-Icons: http://fortawesome.github.com/Font-Awesome
 CSS Reset: http://necolas.github.com/normalize.css
-Illustration: http://www.gutenberg.org/files/30492/30492-h/30492-h.htm
+Background Texture: http://subtlepatterns.com/exclusive-paper
+Favicon: http://p.yusukekamiyamane.com
+Favicon Generation: http://www.favicon.cc
+Font: http://www.google.com/fonts/specimen/Open+Sans
+Font: http://www.google.com/fonts/specimen/Cantata+One
+Font Generation: http://fontello.com
+Icons: http://fortawesome.github.com/Font-Awesome
+Illustrations: http://www.gutenberg.org/files/30492/30492-h/30492-h.htm
+Web Framework: http://www.sinatrarb.com
