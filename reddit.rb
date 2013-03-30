@@ -24,7 +24,7 @@ class Reddit
 
     def entries(options={})
         sort = options[:sort] || 'top'
-        t = options[:day] || 'day'
+        t = options[:t] || 'day'
         limit = options[:limit] || 25
 
         url = "#{$domain}/r/#{@subreddits.join '+'}/#{sort}.json" +
