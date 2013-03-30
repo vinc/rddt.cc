@@ -148,6 +148,7 @@ error do
         message = "Looks like some kind of internal server error."
     end
     slim :error, locals: {
+        period: session[:period],
         message: message,
         image: 'error_500.png'
     }
@@ -155,6 +156,7 @@ end
 
 not_found do
     slim :error, locals: {
+        period: session[:period],
         message: "You requested something that cannot be found.",
         image: 'error_404.png'
     }
