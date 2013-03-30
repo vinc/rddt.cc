@@ -38,7 +38,7 @@ get '/r/:subreddits/?:sort?' do
     param :limit, Integer,
         in: (1..100), default: 20
 
-    key_entries = "subreddits:#{request.path}"
+    key_entries = "subreddits:#{request.fullpath}"
     entries = settings.cache.get(key_entries)
     if entries.nil?
         key_wait = "wait"
