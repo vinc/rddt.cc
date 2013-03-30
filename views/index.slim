@@ -14,11 +14,11 @@ html
             - for edition, subreddits in editions do
                 article
                     h1
-                        a href="/r/#{subreddits.join('+')}/top?t=week"
+                        a href="/r/#{subreddits.join('+')}/top?t=#{period.chomply}"
                             = edition
                     ul
                         - for subreddit in subreddits do
                             li
-                                a href="/r/#{subreddit}/top?t=week"
+                                a href="/r/#{subreddit}/top?t=#{period.chomply}"
                                     = subreddit
         == partial :footer

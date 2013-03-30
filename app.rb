@@ -11,6 +11,15 @@ require 'sinatra/reloader' if development?
 
 require './reddit'
 
+class String
+    # Return a new String with 'ly' removed from the end of str (if present).
+    # If str contains 'i' like in 'daily', then it will be changed by a 'y'
+    # like in 'day'.
+    def chomply
+        self[0..-3].tr('i', 'y')
+    end
+end
+
 configure do
     enable :sessions
     if development?
@@ -27,7 +36,7 @@ configure do
     set :static_cache_control, [:public, :max_age => 60 * 60 * 24 * 30]
 
     set :editions, YAML.load_file('editions.yaml')
-    set :period, 'weekly'
+    set :period, 'daily'
 end
 
 before do
@@ -38,6 +47,7 @@ end
 
 get '/' do
     slim :index, locals: {
+        t: session[:period].chomply,
         period: session[:period],
         editions: session[:editions]
     }
@@ -46,7 +56,7 @@ end
 get '/r/:subreddits/?:sort?' do
     param :sort, String, default: 'hot',
         in: ['hot', 'top', 'new', 'controversial']
-    param :t, String, default: session[:period][0..-3].tr('i', 'y'),
+    param :t, String, default: session[:period].chomply,
         in: ['hour', 'day', 'week', 'month', 'year', 'all']
     param :limit, Integer, default: 20,
         in: (1..100)
