@@ -116,9 +116,9 @@ get '/select' do # FIXME: should be removed
     redirect '/', 303
 end
 
-get '/style.css' do
+get '/styles/screen.css' do
     expires 60 * 60 * 24 * 31, :public, :must_revalidate
-    scss :style
+    scss :screen
 end
 
 error do
