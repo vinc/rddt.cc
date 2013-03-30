@@ -27,20 +27,20 @@ html
                 datalist id="subreddits-list"
                     - for subreddit in editions.values.flatten.uniq do
                         option = subreddit
-                .editions
+                ul.editions
                     - for edition, subreddits in editions do
-                        p.edition
+                        li.edition
                             a data-action="remove" href="#"
                                 i.icon-cancel-circle
                             input name="titles[]" type="text" placeholder="Name" value=edition
                             span
                                 input name="subreddits[]" type="text" placeholder="Space separated list of subreddits" list="subreddits-list" multiple="multiple" value=subreddits.join(' ')
-                p.edition.empty
-                    a data-action="remove" href="#"
-                        i.icon-cancel-circle
-                    input name="titles[]" type="text" placeholder="Name" value=""
-                    span
-                        input name="subreddits[]" type="text" placeholder="Space separated list of subreddits" list="subreddits-list" multiple="multiple" value=""
+                    li.edition.empty
+                        a data-action="remove" href="#"
+                            i.icon-cancel-circle
+                        input name="titles[]" type="text" placeholder="Name" value=""
+                        span
+                            input name="subreddits[]" type="text" placeholder="Space separated list of subreddits" list="subreddits-list" multiple="multiple" value=""
 
                 p.add-edition
                     a data-action="add" href="#"

@@ -201,7 +201,12 @@ section.settings {
         line-height: 2em; // Vertical align icons
         margin-left: 2em; // Ident the line without scrollbar
     }
-    p.edition {
+    .editions {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    .edition {
         margin: 0;
         overflow: hidden;
         width: 100%;
