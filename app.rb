@@ -13,7 +13,12 @@ require './reddit'
 
 configure do
     enable :sessions
-    set :slim, :pretty => true
+    if development?
+        set :slim, :pretty => true
+        set :css_style => :expanded
+    else
+        set :css_style => :compressed
+    end
     set :partial_template_engine, :slim
     #set :show_exceptions, false
 
@@ -119,7 +124,7 @@ end
 
 get '/styles/screen.css' do
     expires 60 * 60 * 24 * 31, :public, :must_revalidate
-    scss :screen
+    scss :screen, :style => settings.css_style
 end
 
 error do
