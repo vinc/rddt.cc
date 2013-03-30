@@ -94,7 +94,7 @@ post '/settings' do
     # The form inputs could be empty
     editions.delete_if {|k, v| k.empty? || v.empty?}
 
-    session[:editions] = editions
+    session[:editions] = (editions.empty? ? settings.editions : editions)
 
     slim :settings, locals: {
         period: session[:period],
