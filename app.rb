@@ -19,6 +19,7 @@ configure do
 
     set :cache, Dalli::Client.new
     set :ttl, 60 * 30
+    set :static_cache_control, [:public, :max_age => 60 * 60 * 24 * 30]
 
     set :editions, YAML.load_file('editions.yaml')
     set :period, 'weekly'
