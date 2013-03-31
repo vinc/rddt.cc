@@ -69,7 +69,10 @@ get '/r/:subreddits/?:sort?' do
         wait = settings.cache.get(key_wait)
         unless wait.nil?
             remaining = '%.6f' % (time_wait + wait - Time.now.to_f)
-            halt(500, slim(:ratelimited, locals: {wait: remaining}))
+            halt(500, slim(:ratelimited, locals: {
+                period: session[:period],
+                wait: remaining
+            }))
         end
 
         subreddits = params[:subreddits].split '+'
