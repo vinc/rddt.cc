@@ -9,12 +9,15 @@ html
         link href="/styles/icons.css" rel="stylesheet" type="text/css"
         script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
         script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-        script src="/scripts/form.js"
+        script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"
+        script src="/scripts/store.min.js"
+        script src="/scripts/init.js"
+        script src="/scripts/settings.js"
     body
         == partial :header, :locals => { period: period }
 
         section.settings
-            form action="" method="post"
+            form action="" method="post" data-role="settings"
                 p
                     label for="period" Periodicity: 
                     select name="period"
@@ -30,17 +33,9 @@ html
                 ul.editions
                     - for edition, subreddits in editions do
                         li.edition
-                            a data-action="remove" href="#"
-                                i.icon-cancel-circle
-                            input name="titles[]" type="text" placeholder="Name" value=edition
-                            span
-                                input name="subreddits[]" type="text" placeholder="Space separated list of subreddits" list="subreddits-list" multiple="multiple" value=subreddits.join(' ')
+                            == partial :'partials/settings/edition', :locals => { edition: edition, subreddits: subreddits }
                     li.edition.empty
-                        a data-action="remove" href="#"
-                            i.icon-cancel-circle
-                        input name="titles[]" type="text" placeholder="Name" value=""
-                        span
-                            input name="subreddits[]" type="text" placeholder="Space separated list of subreddits" list="subreddits-list" multiple="multiple" value=""
+                        == partial :'partials/settings/edition', :locals => { edition: '', subreddits: [] }
 
                 p.add-edition
                     a data-action="add" href="#"

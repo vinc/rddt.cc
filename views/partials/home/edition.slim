@@ -1,0 +1,9 @@
+article
+    h1
+        a href="/r/#{subreddits.join('+')}/top?t=#{t}"
+            = edition
+    ul
+        - for subreddit in subreddits do
+            li
+                a href="/r/#{subreddit}/top?t=#{t}"
+                    = subreddit

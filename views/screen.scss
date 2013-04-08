@@ -77,6 +77,11 @@ article {
     @include vendor-prefix(transition, background 0.3s ease-in);
 }
 
+// Hide before async loading
+.editions {
+    display: none;
+}
+
 section.news {
     > header {
         color: #bbb;

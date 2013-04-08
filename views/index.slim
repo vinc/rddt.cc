@@ -7,18 +7,16 @@ html
         link href="/styles/normalize.css" rel="stylesheet" type="text/css"
         link href="/styles/screen.css" rel="stylesheet" type="text/css"
         link href="/styles/icons.css" rel="stylesheet" type="text/css"
+        script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
+        script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+        script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"
+        script src="/scripts/store.min.js"
+        script src="/scripts/init.js"
+        script src="/scripts/home.js"
     body
         == partial :header, :locals => { period: period }
 
         section.editions
             - for edition, subreddits in editions do
-                article
-                    h1
-                        a href="/r/#{subreddits.join('+')}/top?t=#{period.chomply}"
-                            = edition
-                    ul
-                        - for subreddit in subreddits do
-                            li
-                                a href="/r/#{subreddit}/top?t=#{period.chomply}"
-                                    = subreddit
+                == partial :'partials/home/edition', :locals => { t: period.chomply, edition: edition, subreddits: subreddits }
         == partial :footer
