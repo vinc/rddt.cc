@@ -1,4 +1,5 @@
 $col-width: 3em;
+$box-shadow-size: 7px;
 $bg-color: whitesmoke;
 
 @mixin vendor-prefix($name, $args) {
@@ -80,6 +81,16 @@ article {
 // Hide before async loading
 .editions {
     display: none;
+}
+
+.message {
+    background: rgba(gold, 0.3);
+    border: solid 1px goldenrod;
+    border-radius: 3px;
+    box-shadow: 0 1px 8px rgba(#999, 0.2) inset, 0 0 $box-shadow-size gold;
+    color: #555;
+    padding: 0.4em;
+    text-align: center;
 }
 
 section.news {
@@ -216,8 +227,6 @@ section.settings {
         margin: 0;
         overflow: hidden;
         width: 100%;
-
-        $box-shadow-size: 7px;
 
         input {
             &[type="text"] {

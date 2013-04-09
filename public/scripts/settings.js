@@ -73,11 +73,21 @@
     }
     store.set('period', period);
     store.set('editions', editions);
+    $('<p>')
+      .addClass('message')
+      .html('Settings saved')
+      .appendTo($(this))
+      .fadeIn()
+      .delay(5000)
+      .fadeOut(function() { $(this).remove(); });
     return false;
   };
 
   $(document).ready(function() {
     init();
+    $('.message')
+      .delay(5000)
+      .fadeOut(function() { $(this).remove(); });
     $('form[data-role=settings]').submit(save);
   });
 

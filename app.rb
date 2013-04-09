@@ -103,7 +103,8 @@ end
 get '/settings' do
     slim :settings, locals: {
         period: settings.period,
-        editions: settings.editions
+        editions: settings.editions,
+        message: ''
     }
 end
 
@@ -125,7 +126,8 @@ post '/settings' do
 
     slim :settings, locals: {
         period: params[:period],
-        editions: editions
+        editions: editions,
+        message: 'Default settings restored'
     }
 end
 
