@@ -1,15 +1,11 @@
 (function () {
   var init;
 
-  String.prototype.chomply = function() {
-    return this.slice(0, -2).replace('i', 'y');
-  }
-
   init = function() {
     var editions;
 
     if (period = store.get('period')) {
-      $('.subtitle').html($('.subtitle').html().replace('daily', period));
+      $('.subtitle').html($('.subtitle').html().replace(/\w+ly/, period));
     }
   };
 

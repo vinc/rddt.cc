@@ -12,6 +12,7 @@
 
     if (period = store.get('period')) {
       t = period.chomply();
+      $('.subtitle').html($('.subtitle').html().replace(/\w+ly/, period));
     }
 
     list = $('.editions');

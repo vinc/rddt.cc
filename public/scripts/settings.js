@@ -6,6 +6,7 @@
     
     if (period = store.get('period')) {
       $('select[name=period]').val(period);
+      $('.subtitle').html($('.subtitle').html().replace(/\w+ly/, period));
     }
 
     list = $('.editions');
@@ -73,6 +74,7 @@
     }
     store.set('period', period);
     store.set('editions', editions);
+    init();
     $('<p>')
       .addClass('message')
       .html('Settings saved')
