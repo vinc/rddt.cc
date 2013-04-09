@@ -111,6 +111,8 @@ end
 post '/settings' do
     param :period, String, default: settings.period,
         in: ['hourly', 'daily', 'weekly', 'monthly', 'yearly']
+    param :subreddits, Array, required: true
+    param :titles, Array, required: true
 
     # The subreddits array is made of strings
     # containing subreddits separated by space
@@ -122,12 +124,18 @@ post '/settings' do
     # The form inputs could be empty
     editions.delete_if {|k, v| k.empty? || v.empty?}
 
-    editions = settings.editions if editions.empty?
+    if editions.empty?
+        message = 'Default settings restored'
+        editions = settings.editions
+    else
+        # TODO
+        message = ''
+    end
 
     slim :settings, locals: {
         period: params[:period],
         editions: editions,
-        message: 'Default settings restored'
+        message: message
     }
 end
 
@@ -143,6 +151,14 @@ end
 get '/styles/screen.css' do
     expires 60 * 60 * 24 * 31, :public, :must_revalidate
     scss :screen, :style => settings.css_style
+end
+
+error 406 do
+    slim :error, locals: {
+        period: settings.period,
+        message: response.body[0],
+        image: 'error_500.png'
+    }
 end
 
 error do
