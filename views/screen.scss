@@ -78,6 +78,10 @@ article {
     @include vendor-prefix(transition, background 0.3s ease-in);
 }
 
+datalist {
+    display: none;
+}
+
 // Hide before async loading
 .editions {
     display: none;
