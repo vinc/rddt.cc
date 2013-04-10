@@ -1,40 +1,40 @@
 doctype html
 html
-    head
-        title = "#{request.path} - Reddit digest"
-        meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-        link href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans" rel="stylesheet" type="text/css"
-        link href="/styles/normalize.css" rel="stylesheet" type="text/css"
-        link href="/styles/screen.css" rel="stylesheet" type="text/css"
-        link href="/styles/icons.css" rel="stylesheet" type="text/css"
-        script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
-        script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-        script src="/scripts/store.min.js"
-        script src="/scripts/init.js"
-    body
-        == partial :header, :locals => { period: period }
+  head
+    title = "#{request.path} - Reddit digest"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    link href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans" rel="stylesheet" type="text/css"
+    link href="/styles/normalize.css" rel="stylesheet" type="text/css"
+    link href="/styles/screen.css" rel="stylesheet" type="text/css"
+    link href="/styles/icons.css" rel="stylesheet" type="text/css"
+    script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
+    script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+    script src="/scripts/store.min.js"
+    script src="/scripts/init.js"
+  body
+    == partial :'partials/header', :locals => { period: period }
 
-        section.news
-            header
-                p
-                    i.icon-up
-                p
-                    i.icon-comment
-                p
-                    a href="http://www.reddit.com#{request.fullpath}"
-                        = request.path
+    section.news
+      header
+        p
+          i.icon-up
+        p
+          i.icon-comment
+        p
+          a href="http://www.reddit.com#{request.fullpath}"
+            = request.path
 
-            - for entry in entries do
-                article
-                    header
-                        p
-                            a href=entry.permalink
-                                = entry.votes
-                        p
-                            a href=entry.permalink
-                                = entry.comments
-                    h1
-                        a href=entry.url
-                            = entry.title
+      - for entry in entries do
+        article
+          header
+            p
+              a href=entry.permalink
+                = entry.votes
+            p
+              a href=entry.permalink
+                = entry.comments
+          h1
+            a href=entry.url
+              = entry.title
 
-        == partial :footer
+    == partial :'partials/footer'

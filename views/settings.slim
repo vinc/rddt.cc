@@ -1,49 +1,49 @@
 doctype html
 html
-    head
-        title Settings - Reddit Digest
-        meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-        link href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans" rel="stylesheet" type="text/css"
-        link href="/styles/normalize.css" rel="stylesheet" type="text/css"
-        link href="/styles/screen.css" rel="stylesheet" type="text/css"
-        link href="/styles/icons.css" rel="stylesheet" type="text/css"
-        script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
-        script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-        script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"
-        script src="/scripts/store.min.js"
-        script src="/scripts/settings.js"
-    body
-        == partial :header, :locals => { period: period }
+  head
+    title Settings - Reddit Digest
+    meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    link href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans" rel="stylesheet" type="text/css"
+    link href="/styles/normalize.css" rel="stylesheet" type="text/css"
+    link href="/styles/screen.css" rel="stylesheet" type="text/css"
+    link href="/styles/icons.css" rel="stylesheet" type="text/css"
+    script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
+    script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+    script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"
+    script src="/scripts/store.min.js"
+    script src="/scripts/settings.js"
+  body
+    == partial :'partials/header', :locals => { period: period }
 
-        section.settings
-            form action="" method="post" data-role="settings"
-                p
-                    label for="period" Periodicity: 
-                    select name="period"
-                        - for p in ['hourly', 'daily', 'weekly', 'monthly', 'yearly'] do
-                              - if p == period
-                                  option selected="selected" = p
-                              - else
-                                  option = p
-                p Editions:
-                datalist id="subreddits-list"
-                    - for subreddit in editions.values.flatten.uniq do
-                        option = subreddit
-                ul.editions
-                    - for edition, subreddits in editions do
-                        li.edition
-                            == partial :'partials/settings/edition', :locals => { edition: edition, subreddits: subreddits }
-                    li.edition.empty
-                        == partial :'partials/settings/edition', :locals => { edition: '', subreddits: [] }
+    section.settings
+      form action="" method="post" data-role="settings"
+        p
+          label for="period" Periodicity: 
+          select name="period"
+            - for p in ['hourly', 'daily', 'weekly', 'monthly', 'yearly'] do
+                - if p == period
+                  option selected="selected" = p
+                - else
+                  option = p
+        p Editions:
+        datalist id="subreddits-list"
+          - for subreddit in editions.values.flatten.uniq do
+            option = subreddit
+        ul.editions
+          - for edition, subreddits in editions do
+            li.edition
+              == partial :'partials/settings/edition', :locals => { edition: edition, subreddits: subreddits }
+          li.edition.empty
+            == partial :'partials/settings/edition', :locals => { edition: '', subreddits: [] }
 
-                p.add-edition
-                    a data-action="add" href="#"
-                        i.icon-plus-circle
-                        | Add another edition
-                p.save-settings
-                    input type="submit" value="Save settings"
-                - unless message.empty?
-                    p.message
-                        = message
+        p.add-edition
+          a data-action="add" href="#"
+            i.icon-plus-circle
+            | Add another edition
+        p.save-settings
+          input type="submit" value="Save settings"
+        - unless message.empty?
+          p.message
+            = message
 
-        == partial :footer
+    == partial :'partials/footer'

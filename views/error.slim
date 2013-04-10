@@ -1,23 +1,23 @@
 doctype html
 html
-    head
-        title Error :( - Reddit Digest
-        meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-        link href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans" rel="stylesheet" type="text/css"
-        link href="/styles/normalize.css" rel="stylesheet" type="text/css"
-        link href="/styles/screen.css" rel="stylesheet" type="text/css"
-        link href="/styles/icons.css" rel="stylesheet" type="text/css"
-        script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
-        script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-        script src="/scripts/store.min.js"
-        script src="/scripts/init.js"
-    body
-        == partial :header, :locals => { period: period }
+  head
+    title Error :( - Reddit Digest
+    meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    link href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans" rel="stylesheet" type="text/css"
+    link href="/styles/normalize.css" rel="stylesheet" type="text/css"
+    link href="/styles/screen.css" rel="stylesheet" type="text/css"
+    link href="/styles/icons.css" rel="stylesheet" type="text/css"
+    script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
+    script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+    script src="/scripts/store.min.js"
+    script src="/scripts/init.js"
+  body
+    == partial :'partials/header', :locals => { period: period }
 
-        section.error
-            h1 Sorry buddy, an error has occured.
-            p
-                img src="/images/#{image}"
-            p = message
+    section.error
+      h1 Sorry buddy, an error has occured.
+      p
+        img src="/images/#{image}"
+      p = message
 
-        == partial :footer
+    == partial :'partials/footer'

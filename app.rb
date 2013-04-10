@@ -153,7 +153,7 @@ end
 
 get '/styles/screen.css' do
     expires 60 * 60 * 24 * 31, :public, :must_revalidate
-    scss :screen, :style => settings.css_style
+    scss :'styles/screen', :style => settings.css_style
 end
 
 error 400..599 do

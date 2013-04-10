@@ -1,21 +1,22 @@
 doctype html
 html
-    head
-        title Reddit Digest
-        meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-        link href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans" rel="stylesheet" type="text/css"
-        link href="/styles/normalize.css" rel="stylesheet" type="text/css"
-        link href="/styles/screen.css" rel="stylesheet" type="text/css"
-        link href="/styles/icons.css" rel="stylesheet" type="text/css"
-        script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
-        script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-        script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"
-        script src="/scripts/store.min.js"
-        script src="/scripts/home.js"
-    body
-        == partial :header, :locals => { period: period }
+  head
+    title Reddit Digest
+    meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    link href="//fonts.googleapis.com/css?family=Cantata+One|Open+Sans" rel="stylesheet" type="text/css"
+    link href="/styles/normalize.css" rel="stylesheet" type="text/css"
+    link href="/styles/screen.css" rel="stylesheet" type="text/css"
+    link href="/styles/icons.css" rel="stylesheet" type="text/css"
+    script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
+    script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+    script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"
+    script src="/scripts/store.min.js"
+    script src="/scripts/home.js"
+  body
+    == partial :'partials/header', :locals => { period: period }
 
-        section.editions
-            - for edition, subreddits in editions do
-                == partial :'partials/home/edition', :locals => { t: period.chomply, edition: edition, subreddits: subreddits }
-        == partial :footer
+    section.editions
+      - for edition, subreddits in editions do
+        == partial :'partials/home/edition', :locals => { t: period.chomply, edition: edition, subreddits: subreddits }
+
+    == partial :'partials/footer'
