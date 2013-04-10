@@ -50,6 +50,7 @@ end
 
 before do
     expires settings.ttl, :public, :must_revalidate
+    headers 'X-UA-Compatible' => 'IE=edge,chrome=1'
 end
 
 get '/' do
