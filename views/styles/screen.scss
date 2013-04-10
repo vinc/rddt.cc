@@ -29,6 +29,7 @@ body {
             a {
                 @include vendor-prefix(transition, color 0.5s ease-out);
                 color: #777;
+                line-height: 1em;
             }
             a:hover {
                 color: #000;
