@@ -31,7 +31,7 @@ class Reddit
               "?t=#{t}&limit=#{limit}"
         begin
             res = JSON.parse RestClient.get url, 'user-agent' => 'Nuzba v0.0.1'
-        rescue JSON::ParserError
+        rescue JSON::ParserError, RestClient::GatewayTimeout
             return []
         end
         res['data']['children'].map do |child|

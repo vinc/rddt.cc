@@ -88,6 +88,9 @@ get '/r/:subreddits/?:sort?' do
         subreddits = params[:subreddits].split(/[+\s]/)
         entries = Reddit.new(subreddits).entries(params)
 
+        msg = 'Looks like Reddit is unavailable at the moment.'
+        halt(503, msg) if entries.empty?
+
         # Cache query
         settings.cache.set(key_entries, entries, settings.ttl)
 
@@ -153,7 +156,7 @@ get '/styles/screen.css' do
     scss :screen, :style => settings.css_style
 end
 
-error 406 do
+error 400..599 do
     slim :error, locals: {
         period: settings.period,
         message: response.body[0],
@@ -162,14 +165,16 @@ error 406 do
 end
 
 error do
-    status 500
     case env['sinatra.error']
     when SocketError, Errno::ECONNREFUSED
         message = 'Looks like our tube does not connect to Reddit'
+        status 503
     when Dalli::RingError
         message = 'Looks like our cache servers do not want to run.'
+        status 503
     else
         message = 'Looks like some kind of internal server error.'
+        status 500
     end
     slim :error, locals: {
         period: settings.period,
