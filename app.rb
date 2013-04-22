@@ -80,7 +80,7 @@ get '/r/:subreddits/?:sort?' do
         wait = settings.cache.get(key_wait)
         unless wait.nil?
             remaining = '%.6f' % (time_wait + wait - Time.now.to_f)
-            halt(500, slim(:ratelimited, locals: {
+            halt(503, slim(:ratelimited, locals: {
                 period: settings.period,
                 wait: remaining
             }))
@@ -158,11 +158,13 @@ get '/styles/screen.css' do
 end
 
 error 400..599 do
-    slim :error, locals: {
-        period: settings.period,
-        message: response.body[0],
-        image: 'error_500.png'
-    }
+    unless response.body[0] =~ /<html>/
+        slim :error, locals: {
+            period: settings.period,
+            message: response.body[0],
+            image: 'error_500.png'
+        }
+    end
 end
 
 error do
