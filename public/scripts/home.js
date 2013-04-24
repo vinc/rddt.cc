@@ -1,5 +1,5 @@
 (function () {
-  var init;
+  var init, period;
 
   String.prototype.chomply = function() {
     return this.slice(0, -2).replace('i', 'y');
@@ -7,7 +7,7 @@
 
   init = function() {
     var list, editions, t;
-    
+
     t = 'day';
 
     if (period = store.get('period')) {
@@ -20,7 +20,7 @@
       list.html('');
       $.get('/partials/home/edition', function(data) {
         var i, n, k, r, view, item;
-        
+
         item = $('li', data)[0].outerHTML;
         data = data.replace(item, '{{{items}}}');
 

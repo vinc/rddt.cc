@@ -44,7 +44,7 @@ configure do
     set :ttl, 60 * 30
     set :static_cache_control, [:public, :max_age => 60 * 60 * 24 * 30]
 
-    set :editions, YAML.load_file('editions.yaml')
+    set :editions, YAML.load_file('editions.yml')
     set :period, 'daily'
 end
 
@@ -69,7 +69,7 @@ get '/r/:subreddits/?:sort?' do
         in: ['hot', 'top', 'new', 'controversial']
     param :t, String, default: settings.period.chomply,
         in: ['hour', 'day', 'week', 'month', 'year', 'all']
-    param :limit, Integer, default: 20,
+    param :limit, Integer, default: 100,
         in: (1..100)
 
     key_entries = "subreddits:#{request.fullpath}"

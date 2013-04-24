@@ -1,5 +1,5 @@
 (function () {
-  var init;
+  var init, period;
 
   init = function() {
     var editions;
