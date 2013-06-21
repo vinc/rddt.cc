@@ -314,6 +314,20 @@ section.error {
     }
 }
 
+@media screen and (max-width: 600px) {
+    section.news > header p:nth-child(2),
+    section.news > article p:nth-child(2) {
+        display: none; // Hide comments count column
+    }
+    section.news > header p:nth-child(1),
+    section.news > article p:nth-child(1) {
+        width: $col-width - 1;
+    }
+    section.news > header p:nth-child(3),
+    section.news > article h1 {
+        padding-left: 1em;
+    }
+}
 @media screen and (max-width: 480px) {
     body {
         padding: 0.3em;
@@ -324,18 +338,8 @@ section.error {
             }
         }
     }
-    body > header .subtitle,
-    section.news > header p:nth-child(2),
-    section.news > article p:nth-child(2) {
+    body > header .subtitle {
         display: none;
-    }
-    section.news > header p:nth-child(1),
-    section.news > article p:nth-child(1) {
-        width: $col-width - 1;
-    }
-    section.news > header p:nth-child(3),
-    section.news > article h1 {
-        padding-left: 1em;
     }
     section.editions {
         article {
