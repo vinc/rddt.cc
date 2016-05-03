@@ -13,7 +13,7 @@ html
     script src="/scripts/vendors/store.min.js"
     script src="/scripts/subs.js"
   body
-    == partial :'partials/header', :locals => { period: period }
+    == partial :"partials/header", :locals => { period: period }
 
     section.news
       header
@@ -38,4 +38,4 @@ html
             a href=entry.url
               = entry.title
 
-    == partial :'partials/footer'
+    == partial :"partials/footer"

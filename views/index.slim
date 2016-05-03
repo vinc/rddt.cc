@@ -14,10 +14,10 @@ html
     script src="/scripts/vendors/store.min.js"
     script src="/scripts/home.js"
   body
-    == partial :'partials/header', :locals => { period: period }
+    == partial :"partials/header", :locals => { period: period }
 
     section.editions
       - for edition, subreddits in editions do
-        == partial :'partials/home/edition', :locals => { t: period.chomply, edition: edition, subreddits: subreddits }
+        == partial :"partials/home/edition", :locals => { t: period.chomply, edition: edition, subreddits: subreddits }
 
-    == partial :'partials/footer'
+    == partial :"partials/footer"

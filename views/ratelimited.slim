@@ -13,7 +13,7 @@ html
     script src="/scripts/vendors/store.min.js"
     script src="/scripts/init.js"
   body
-    == partial :'partials/header', :locals => { period: period }
+    == partial :"partials/header", :locals => { period: period }
 
     section.error
       h1 Sorry old chap, our tube to Reddit API is chocked up.
@@ -25,4 +25,4 @@ html
         | browse this page directly on Reddit
         |  instead.
 
-    == partial :'partials/footer'
+    == partial :"partials/footer"

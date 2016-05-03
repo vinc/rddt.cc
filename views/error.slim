@@ -13,7 +13,7 @@ html
     script src="/scripts/vendors/store.min.js"
     script src="/scripts/init.js"
   body
-    == partial :'partials/header', :locals => { period: period }
+    == partial :"partials/header", :locals => { period: period }
 
     section.error
       h1 Sorry buddy, an error has occured.
@@ -21,4 +21,4 @@ html
         img src="/images/#{image}"
       p = message
 
-    == partial :'partials/footer'
+    == partial :"partials/footer"

@@ -14,14 +14,14 @@ html
     script src="/scripts/vendors/store.min.js"
     script src="/scripts/settings.js"
   body
-    == partial :'partials/header', :locals => { period: period }
+    == partial :"partials/header", :locals => { period: period }
 
     section.settings
       form action="" method="post" data-role="settings"
         p
           label for="period" Periodicity: 
           select name="period"
-            - for p in ['hourly', 'daily', 'weekly', 'monthly', 'yearly'] do
+            - for p in ["hourly", "daily", "weekly", "monthly", "yearly"] do
                 - if p == period
                   option selected="selected" = p
                 - else
@@ -33,9 +33,9 @@ html
         ul.editions
           - for edition, subreddits in editions do
             li.edition
-              == partial :'partials/settings/edition', :locals => { edition: edition, subreddits: subreddits }
+              == partial :"partials/settings/edition", :locals => { edition: edition, subreddits: subreddits }
           li.edition.empty
-            == partial :'partials/settings/edition', :locals => { edition: '', subreddits: [] }
+            == partial :"partials/settings/edition", :locals => { edition: "", subreddits: [] }
 
         p.add-edition
           a data-action="add" href="#"
@@ -47,4 +47,4 @@ html
           p.message
             = message
 
-    == partial :'partials/footer'
+    == partial :"partials/footer"
