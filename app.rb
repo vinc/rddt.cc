@@ -54,7 +54,7 @@ end
 
 get "/" do
   param :t, String, default: settings.period.chomply,
-    in: ["hour", "day", "week", "month", "year", "all"]
+    in: %w(hour day week month year all)
 
   slim :index, locals: {
     t: params[:t],
