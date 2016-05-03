@@ -1,16 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'dalli'
-gem 'memcachier'
+gem 'redis'
+gem 'rest-client'
 gem 'sass'
-gem 'slim'
 gem 'sinatra'
 gem 'sinatra-param'
 gem 'sinatra-partial'
+gem 'slim'
 
 group :development do
   gem 'sinatra-contrib'
 end
-
-# For reddit gem
-gem 'rest-client'

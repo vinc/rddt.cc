@@ -1,7 +1,6 @@
 require 'yaml'
 
-require 'dalli'
-require 'memcachier'
+require 'redis'
 require 'sass'
 require 'slim'
 require 'sinatra'
@@ -40,7 +39,7 @@ configure do
   set :partial_template_engine, :slim
   #set :show_exceptions, false
 
-  set :cache, Dalli::Client.new
+  set :cache, Redis.new
   set :ttl, 60 * 30
   set :static_cache_control, [:public, :max_age => 60 * 60 * 24 * 30]
 
@@ -93,10 +92,10 @@ get '/r/:subreddits/?:sort?' do
     halt(503, msg) if entries.empty?
 
     # Cache query
-    settings.cache.set(key_entries, entries, settings.ttl)
+    settings.cache.setex(key_entries, settings.ttl, entries)
 
     # Wait 'time_wait' seconds before next query
-    settings.cache.set(key_wait, Time.now.to_f, time_wait)
+    settings.cache.setex(key_wait, time_wait, Time.now.to_f)
   end
   slim :subreddits, locals: {
     period: settings.period,
@@ -170,10 +169,10 @@ end
 error do
   case env['sinatra.error']
   when SocketError, Errno::ECONNREFUSED
-    message = 'Looks like our tube does not connect to Reddit'
+    message = 'Looks like our tube does not connect to Reddit.'
     status 503
-  when Dalli::RingError
-    message = 'Looks like our cache servers do not want to run.'
+  when Redis::BaseError
+    message = 'Looks like some kind of problem with the cache.'
     status 503
   else
     message = 'Looks like some kind of internal server error.'
