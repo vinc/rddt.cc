@@ -59,7 +59,7 @@ body {
     }
 }
 
-h1 {
+h1, h2 {
     font-family: 'Cantata One', serif;
     font-weight: normal;
 }
@@ -168,13 +168,13 @@ section.news {
             }
         }
 
-        h1 {
+        h2 {
             margin: 0;
             padding-left: 2em;
             font-size: 1em;
             font-weight: normal;
             text-overflow: ellipsis;
-            white-space: nowrap;
+            /*white-space: nowrap;*/
             overflow: hidden;
             font-family: 'Open Sans', sans-serif;
 
@@ -201,7 +201,7 @@ section.editions {
             }
         }
 
-        h1 {
+        h2 {
             font-size: 1.5em;
             margin: 0;
         }
@@ -324,7 +324,7 @@ section.error {
         width: $col-width - 1;
     }
     section.news > header p:nth-child(3),
-    section.news > article h1 {
+    section.news > article h2 {
         padding-left: 1em;
     }
 }
