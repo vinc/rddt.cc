@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-gem "redis"
+gem "dalli"
+gem "memcachier"
 gem "rest-client"
 gem "sass"
 gem "sinatra"

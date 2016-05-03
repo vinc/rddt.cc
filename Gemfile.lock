@@ -2,10 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.6.8)
+    dalli (2.7.6)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    memcachier (0.0.2)
     mime-types (2.99.1)
     multi_json (1.11.3)
     netrc (0.11.0)
@@ -14,7 +16,6 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    redis (3.2.1)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -48,7 +49,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  redis
+  dalli
+  memcachier
   rest-client
   sass
   sinatra
