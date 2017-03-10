@@ -354,3 +354,18 @@ section.error {
         }
     }
 }
+
+.alert {
+  $color: teal;
+  color: $color;
+  background: rgba($color, 0.25);
+  border: solid 1px $color;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 10px;
+
+  a {
+    color: $color;
+    text-decoration: underline;
+  }
+}
